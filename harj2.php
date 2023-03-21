@@ -44,7 +44,7 @@ $statement->execute();
 $officeRow = $statement->fetch(PDO::FETCH_ASSOC);
 $officeCode = $officeRow["officeCode"];
 
-$sql = "SELECT email FROM employees";
+$sql = "SELECT email FROM employees WHERE officeCode=".$officeCode;
 $statement = $dbcon->prepare($sql);
 $statement->execute();
 
