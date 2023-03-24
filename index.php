@@ -2,16 +2,18 @@
 require "dbconnection.php";
 $dbcon = createDbConnection();
 
-// $sql = "CREATE TABLE person( 
-//     id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL,
-//     PRIMARY KEY(id) 
-// )";
+//Käyttäjän antamat tiedot
+$password = $_POST["pw"];
+$username = $_POST["uname"];
 
-$sql = "INSERT INTO person (name) VALUES ('Marko')";
+$command ="SELECT * FROM customer WHERE username=? AND password=?";
+$statement = $dbcon->prepare($command);
+// $statement->bindParam(2, $password);
+// $statement->bindParam(1, $username);
+$statement->execute(array($username, $password));
 
+$password = "xxxx";
+$username = "asdfasfa";
 
-$dbcon->exec($sql);
+$statement->execute();
 
-$lastId = $dbcon->lastInsertId();
-
-echo "Id for Marko was ".$lastId;
